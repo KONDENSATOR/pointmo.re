@@ -1,0 +1,21 @@
+{
+    "name": "project-name-here",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "start": "node app"
+    },
+    "engines": {
+        "node": "0.10.4",
+        "npm": "1.2.18"
+    },
+    "dependencies": {
+        "express": "3.1.0",
+        "underscore" : "",
+        "bucket" : "KONDENSATOR/bucket-node",
+        "coffee-script" : "*",
+        "connect-coffee-script" : "*",
+        "jade": "*",
+        "less-middleware": "*"
+    }
+}
