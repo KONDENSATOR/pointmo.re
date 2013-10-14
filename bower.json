@@ -1,0 +1,22 @@
+{
+    "name": "project-name-here",
+    "version": "0.0.0",
+    "authors": [
+        "Kondensator AB <core@kondensator.se>"
+    ],
+    "main": "app.coffee",
+    "license": "MIT",
+    "private": true,
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "bootstrap"  : "*",
+        "underscore" : "*",
+        "jquery" : "*"
+    }
+}
