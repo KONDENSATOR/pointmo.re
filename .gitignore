@@ -3,3 +3,4 @@ compiled/
 *.iml
 node_modules
 npm-debug.log
+.DS_Store
