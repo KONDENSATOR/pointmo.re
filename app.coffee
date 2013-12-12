@@ -6,7 +6,7 @@ require("bucket-node").initSingletonBucket 'database-name-here.db', (data) ->
   express             = require("express")
   http                = require("http")
   path                = require("path")
-  routes              = require ("./routes")
+  routes              = require("./routes")
   app                 = express()
 
   unless fs.existsSync path.join(__dirname, "compiled")
@@ -51,10 +51,13 @@ require("bucket-node").initSingletonBucket 'database-name-here.db', (data) ->
   app.configure "development", ->
     app.use express.errorHandler()
 
+  routes.init app
 
   io = io.listen app.listen(3500)
   console.log 'Listening on port 3500'
 
+  positions = {}
+  visitors = {}
 
   io.sockets.on 'connection',  (socket) ->
     socket.emit 'message', { message: 'welcome to pointmore!' }
