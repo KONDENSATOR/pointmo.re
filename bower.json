@@ -17,6 +17,7 @@
     "dependencies": {
         "bootstrap"  : "*",
         "underscore" : "*",
-        "jquery" : "*"
+        "jquery" : "*",
+        "socket.io": "*"
     }
 }
