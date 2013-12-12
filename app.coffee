@@ -51,7 +51,7 @@ require("bucket-node").initSingletonBucket 'database-name-here.db', (data) ->
   app.configure "development", ->
     app.use express.errorHandler()
 
-
+  routes.init(app)
   io = io.listen app.listen(3500)
   console.log 'Listening on port 3500'
 
