@@ -60,9 +60,23 @@ require("bucket-node").initSingletonBucket 'database-name-here.db', (data) ->
   visitors = {}
 
   io.sockets.on 'connection',  (socket) ->
-    socket.emit 'message', { message: 'welcome to pointmore!' }
-    socket.on 'send', (data) ->
-      io.sockets.emit 'message', data
+    do (socket) ->
+      socket.emit 'init',
+        visitors: visitors
+        positions: positions
 
+      socket.on 'd', (data) ->
+        io.sockets.emit 'd', id:socket.id, data:data
+      socket.on 'u', (data) ->
+        io.sockets.emit 'u', id:socket.id, data:data
+      socket.on 'm', (data) ->
+        io.sockets.emit 'm', id:socket.id, data:data
 
+      socket.on 'hi', (data) ->
+        visitors[socket.id] = data
+        io.sockets.emit 'visitor-welcome', {id:socket.id, data:data}
+
+      socket.on 'disconnect', () ->
+        delete visitors[socket.id]
+        io.sockets.emit 'visitor-godbye', {id:socket.id}
 
