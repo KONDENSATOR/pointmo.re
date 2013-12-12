@@ -1,12 +1,13 @@
 require("bucket-node").initSingletonBucket 'database-name-here.db', (data) ->
 
   connectCoffeeScript = require('connect-coffee-script')
+  io                  = require('socket.io')
   fs                  = require("fs")
-  express          = require("express")
-  http             = require("http")
-  path             = require("path")
-  routes           = require ("./routes")
-  app              = express()
+  express             = require("express")
+  http                = require("http")
+  path                = require("path")
+  routes              = require ("./routes")
+  app                 = express()
 
   unless fs.existsSync path.join(__dirname, "compiled")
     fs.mkdirSync path.join(__dirname, "compiled")
@@ -50,7 +51,15 @@ require("bucket-node").initSingletonBucket 'database-name-here.db', (data) ->
   app.configure "development", ->
     app.use express.errorHandler()
 
-  routes.init(app)
-  http.createServer(app).listen app.get("port"), ->
-    console.log "Picay moderators server listening on port " + app.get("port")
+
+  io = io.listen app.listen(3500)
+  console.log 'Listening on port 3500'
+
+
+  io.sockets.on 'connection',  (socket) ->
+    socket.emit 'message', { message: 'welcome to pointmore!' }
+    socket.on 'send', (data) ->
+      io.sockets.emit 'message', data
+
+
 

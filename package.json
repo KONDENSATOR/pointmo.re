@@ -16,6 +16,7 @@
         "coffee-script" : "*",
         "connect-coffee-script" : "*",
         "jade": "*",
-        "less-middleware": "*"
+        "less-middleware": "*",
+        "socket.io": "*"
     }
 }
