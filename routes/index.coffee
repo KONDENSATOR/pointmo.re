@@ -6,4 +6,4 @@ index = (req, res) ->
 exports.init = (app) ->
 
   app.get  '/', index
-  app.get '/kinecttest', test.kinect
+  app.get '/draw', test.kinect
