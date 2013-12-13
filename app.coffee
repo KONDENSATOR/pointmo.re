@@ -65,10 +65,13 @@ require("bucket-node").initSingletonBucket 'database-name-here.db', (data) ->
         positions: positions
 
       socket.on 'd', (data) ->
+        positions[socket.id] = data
         io.sockets.emit 'd', id:socket.id, data:data
       socket.on 'u', (data) ->
+        delete positions[socket.id]
         io.sockets.emit 'u', id:socket.id, data:data
       socket.on 'm', (data) ->
+        positions[socket.id] = data
         io.sockets.emit 'm', id:socket.id, data:data
 
       socket.on 'hi', (data) ->
